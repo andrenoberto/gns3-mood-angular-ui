@@ -1,4 +1,4 @@
-<nav class="navbar is-transparent">
+<nav class="navbar is-primary">
   <div class="navbar-brand">
     <a href="" class="navbar-item"></a>
     <div class="navbar-burger burger" data-target="gns3Navbar">
@@ -16,9 +16,30 @@
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">Server</a>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item">Start</a>
-          <a class="navbar-item">Stop</a>
-          <a class="navbar-item">Pause</a>
+          <a class="navbar-item" data-target="new-project" aria-haspopup="true" (click)="onOpen()">
+            <span class="icon">
+                <i class="fas fa-plus"></i>
+              </span>
+            <span>New</span>
+          </a>
+          <a class="navbar-item" (click)="setPlay()">
+            <span class="icon">
+                <i class="fas fa-play"></i>
+              </span>
+            <span>Start</span>
+          </a>
+          <a class="navbar-item" (click)="setStop()">
+            <span class="icon">
+                <i class="fas fa-stop"></i>
+              </span>
+            <span>Stop</span>
+          </a>
+          <a class="navbar-item" (click)="setPause()">
+            <span class="icon">
+                <i class="fas fa-pause"></i>
+              </span>
+            <span>Pause</span>
+          </a>
         </div>
       </div>
     </div>
@@ -38,3 +59,25 @@
     </div>
   </div>
 </nav>
+<div #newProject id="new-project" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create a new project on GNS3 Server</p>
+      <button class="delete" aria-label="close" (click)="onCloseCancel()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Project name</label>
+        <div class="control">
+          <input class="input" type="text" [(ngModel)]="projectName" placeholder="Home's project">
+        </div>
+        <p class="help">Type your new project's name</p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="onSave()">Create new project</button>
+      <button class="button" (click)="onCloseCancel()">Cancel</button>
+    </footer>
+  </div>
+</div>
