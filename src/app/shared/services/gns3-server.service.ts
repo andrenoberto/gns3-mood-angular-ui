@@ -13,6 +13,6 @@ export class Gns3ServerService {
 
   createProject(name): Observable<any> {
     const body = {name};
-    return this.http.post(environment.apiRootUrl + '/projects', name, this.httpOptions);
+    return this.http.post(environment.apiRootUrl + '/projects', body, this.httpOptions);
   }
 }
