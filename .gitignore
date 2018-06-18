@@ -105,3 +105,4 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
+yarn.lock
