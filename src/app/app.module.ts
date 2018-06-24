@@ -4,22 +4,22 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {DraggableAreaComponent} from './components/draggable-area/draggable-area.component';
-import {NavbarComponent} from './components/navbar/navbar.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Gns3ServerService} from './shared/services/gns3-server.service';
+import {NavbarModule} from './components/navbar/navbar.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DraggableAreaComponent,
-    NavbarComponent
+    DraggableAreaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarModule
   ],
   providers: [
     Gns3ServerService

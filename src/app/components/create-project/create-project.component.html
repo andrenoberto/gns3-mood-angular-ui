@@ -1,0 +1,22 @@
+<div #newProject id="new-project" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create a new project on GNS3 Server</p>
+      <button class="delete" aria-label="close" (click)="onCloseCancel()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="field">
+        <label class="label">Project name</label>
+        <div class="control">
+          <input class="input" type="text" [(ngModel)]="projectName" placeholder="Home's project">
+        </div>
+        <p class="help">Type your new project's name</p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="onSave()">Create new project</button>
+      <button class="button" (click)="onCloseCancel()">Cancel</button>
+    </footer>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../environments/environment';
@@ -9,10 +9,15 @@ export class Gns3ServerService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   createProject(name): Observable<any> {
     const body = {name};
     return this.http.post(environment.apiRootUrl + '/projects', body, this.httpOptions);
+  }
+
+  getProjectList(): Observable<any> {
+    return this.http.get(environment.apiRootUrl + '/projects', this.httpOptions);
   }
 }

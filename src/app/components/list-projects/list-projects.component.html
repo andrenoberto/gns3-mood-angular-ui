@@ -1,0 +1,24 @@
+<div #projectList id="project-list" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Available Projects</p>
+      <button class="delete" aria-label="close" (click)="onClose()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="control">
+        <p>Choose which one to use</p>
+      </div>
+      <div class="control">
+        <label *ngFor="let item of projects" class="radio">
+          <input type="radio" [name]="name" [value]="item.project_id" [(ngModel)]="selected"
+                 (click)="projectEventHandler($event)">
+          {{item.name}}
+        </label>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" (click)="onClose()">Close</button>
+    </footer>
+  </div>
+</div>
