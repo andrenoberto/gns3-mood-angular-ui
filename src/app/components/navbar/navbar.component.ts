@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import fontawesome from '@fortawesome/fontawesome';
-import {faBook, faPause, faPlay, faPlus, faStop} from '@fortawesome/fontawesome-free-solid';
+import {faBook, faPause, faPlay, faPlus, faStop, faList} from '@fortawesome/fontawesome-free-solid';
 import {ListProjectsComponent} from '../list-projects/list-projects.component';
 import {CreateProjectComponent} from '../create-project/create-project.component';
 
-fontawesome.library.add(faBook, faPlay, faPause, faPlus, faStop);
+fontawesome.library.add(faBook, faPlay, faPause, faPlus, faStop, faList);
 
 @Component({
   selector: 'app-navbar',

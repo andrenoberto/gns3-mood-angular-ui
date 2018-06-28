@@ -11,8 +11,7 @@
       </div>
       <div class="control">
         <label *ngFor="let item of projects" class="radio">
-          <input type="radio" [name]="name" [value]="item.project_id" [(ngModel)]="selected"
-                 (click)="projectEventHandler($event)">
+          <input type="radio" [name]="name" [value]="item.project_id" [(ngModel)]="selected">
           {{item.name}}
         </label>
       </div>

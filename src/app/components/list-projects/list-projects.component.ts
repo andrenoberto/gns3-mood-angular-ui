@@ -7,10 +7,10 @@ import {Gns3ServerService} from '../../shared/services/gns3-server.service';
   styleUrls: ['./list-projects.component.scss']
 })
 export class ListProjectsComponent implements OnInit {
+  public opened: string;
   public selected: string;
   public event: string;
   public projects: Array<any>;
-  public disableButton = true;
 
   @ViewChild('projectList') el: ElementRef;
 
@@ -19,6 +19,9 @@ export class ListProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.gns3ServerService.getOpenedProjects().subscribe(data => {
+      data.forEach(project => this.gns3ServerService.closeProject(project.project_id).subscribe());
+    });
   }
 
   private getProjectList() {
@@ -34,5 +37,20 @@ export class ListProjectsComponent implements OnInit {
     this.renderer.addClass(this.el.nativeElement, 'is-active');
   }
 
-  onClose = () => this.renderer.removeClass(this.el.nativeElement, 'is-active');
+  onClose() {
+    this.renderer.removeClass(this.el.nativeElement, 'is-active');
+    if (this.selected !== this.opened) {
+      this.gns3ServerService.openProject(this.selected).subscribe(() => {
+        if (this.opened) {
+          this.gns3ServerService.closeProject(this.opened).subscribe(() => this.updateOpened());
+        } else {
+          this.updateOpened();
+        }
+      }, error => {
+        console.log(error);
+      });
+    }
+  }
+
+  private updateOpened = () => this.opened = this.selected;
 }
