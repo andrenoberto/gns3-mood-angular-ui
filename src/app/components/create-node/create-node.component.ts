@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Gns3ServerService} from '../../shared/services/gns3-server.service';
 
 @Component({
   selector: 'app-create-node',
@@ -6,17 +7,20 @@ import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core
   styleUrls: ['./create-node.component.scss']
 })
 export class CreateNodeComponent implements OnInit {
+  public projectId: string;
   public nodeName: string;
   public type: string;
 
   @ViewChild('newNode') el: ElementRef;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+              private gns3ServerService: Gns3ServerService) { }
 
   ngOnInit() {
   }
 
-  onOpen() {
+  onOpen(projectId) {
+    this.projectId = projectId;
     this.renderer.addClass(this.el.nativeElement, 'is-active');
   }
 
@@ -28,6 +32,7 @@ export class CreateNodeComponent implements OnInit {
   }
 
   onSave() {
+    this.gns3ServerService.createNode(this.projectId, this.nodeName, this.type).subscribe();
     this.onClose();
   }
 

@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
   openCreateProject = () => this.createProjectComponent.onOpen();
 
-  openCreateNode = () => this.createNodeComponent.onOpen();
+  openCreateNode = () => this.createNodeComponent.onOpen(this.listProjectsComponent.selected);
 
   setPause = () => [];
 

@@ -25,9 +25,7 @@ export class CreateProjectComponent implements OnInit {
   onCloseCancel = () => this.onClose();
 
   onSave() {
-    this.gns3ServerService.createProject(this.projectName).subscribe(data => {
-      console.log(data);
-    }, error => console.log('error:', error));
+    this.gns3ServerService.createProject(this.projectName).subscribe(() => {}, error => console.log('error:', error));
     this.onClose();
   }
 
