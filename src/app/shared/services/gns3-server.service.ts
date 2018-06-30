@@ -26,7 +26,7 @@ export class Gns3ServerService {
     return this.http.post(environment.apiRootUrl + '/projects/' + projectId + '/close', {}, this.httpOptions);
   }
 
-  createNode(projectId, name, node_type, compute_id): Observable<any> {
+  createNode(projectId, name, node_type, compute_id = 'local'): Observable<any> {
     const body = {
       name,
       node_type,
