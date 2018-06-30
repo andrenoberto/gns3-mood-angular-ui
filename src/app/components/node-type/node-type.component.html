@@ -1,0 +1,11 @@
+<div class="field">
+  <label class="label">Node's Type</label>
+  <div class="control">
+    <div class="select">
+      <select title="Node's Type" [(ngModel)]="checkModel" (change)="onSelect($event.target.value)"
+              (focusout)="onTouched()" [required]="required">
+        <option *ngFor="let type of types" [value]="type.key">{{type.value}}</option>
+      </select>
+    </div>
+  </div>
+</div>
