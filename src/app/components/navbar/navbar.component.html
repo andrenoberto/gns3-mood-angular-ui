@@ -16,18 +16,6 @@
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">Server</a>
         <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" data-target="node-list" aria-haspopup="true" (click)="openProjectList()">
-            <span class="icon">
-              <i class="fas fa-list"></i>
-            </span>
-            <span>Choose Project</span>
-          </a>
-          <a class="navbar-item" data-target="new-project" aria-haspopup="true" (click)="openCreateProject()">
-            <span class="icon">
-                <i class="fas fa-plus"></i>
-              </span>
-            <span>New</span>
-          </a>
           <a class="navbar-item" (click)="setPlay()">
             <span class="icon">
                 <i class="fas fa-play"></i>
@@ -45,6 +33,34 @@
                 <i class="fas fa-pause"></i>
               </span>
             <span>Pause</span>
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Projects</a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" data-target="project-list" aria-haspopup="true" (click)="openProjectList()">
+            <span class="icon">
+              <i class="fas fa-list"></i>
+            </span>
+            <span>Choose Project</span>
+          </a>
+          <a class="navbar-item" data-target="new-project" aria-haspopup="true" (click)="openCreateProject()">
+            <span class="icon">
+                <i class="fas fa-plus"></i>
+              </span>
+            <span>New</span>
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">Nodes</a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" data-target="new-node" aria-haspopup="true" (click)="openCreateNode()">
+            <span class="icon">
+                <i class="fas fa-plus"></i>
+              </span>
+            <span>New</span>
           </a>
         </div>
       </div>
@@ -67,3 +83,4 @@
 </nav>
 <app-list-projects></app-list-projects>
 <app-create-project></app-create-project>
+<app-create-node></app-create-node>
