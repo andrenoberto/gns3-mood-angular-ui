@@ -32,7 +32,7 @@ export class Gns3ServerService {
       node_type,
       compute_id
     };
-    return this.http.post(environment.apiRootUrl + '/projects' + projectId + '/nodes', body, this.httpOptions);
+    return this.http.post(environment.apiRootUrl + '/projects/' + projectId + '/nodes', body, this.httpOptions);
   }
 
   getProjectList(): Observable<any> {
