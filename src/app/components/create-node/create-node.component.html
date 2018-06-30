@@ -1,3 +1,26 @@
-<p>
-  create-node works!
-</p>
+<div #newNode id="new-node" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create a new node</p>
+      <button class="delete" aria-label="close" (click)="onCloseCancel()"></button>
+    </header>
+    <form #editForm="ngForm" (ngSubmit)="onSave()">
+      <section class="modal-card-body">
+        <div class="field">
+          <label class="label">Node name</label>
+          <div class="control">
+            <input name="nodeName" class="input" type="text" [(ngModel)]="nodeName" placeholder="Michael's node"
+                   [required]="true">
+          </div>
+          <p class="help">Type your new node's name</p>
+        </div>
+        <app-node-type name="nodeType" [(ngModel)]="type" [required]="true" ngDefaultControl></app-node-type>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="submit" class="button is-success" [disabled]="!editForm.form.valid">Create new node</button>
+        <button class="button" (click)="onCloseCancel()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
