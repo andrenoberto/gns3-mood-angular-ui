@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Gns3ServerService} from './shared/services/gns3-server.service';
 import {NavbarModule} from './components/navbar/navbar.module';
+import {ShContextMenuModule} from 'ng2-right-click-menu';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NavbarModule} from './components/navbar/navbar.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NavbarModule
+    NavbarModule,
+    ShContextMenuModule
   ],
   providers: [
     Gns3ServerService
