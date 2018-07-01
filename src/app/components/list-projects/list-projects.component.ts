@@ -52,5 +52,8 @@ export class ListProjectsComponent implements OnInit {
     }
   }
 
-  private updateOpened = () => this.opened = this.selected;
+  private updateOpened() {
+    this.opened = this.selected;
+    this.gns3ServerService.changeProject(this.opened);
+  }
 }
