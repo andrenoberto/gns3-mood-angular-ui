@@ -10,9 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --aot --prod",
     "heroku-postbuild": "tsc",
-    "deploy-heroku":"git commit -am \"Generating new build\" && git push heroku master"
+    "deploy-heroku":"git add . && git commit -m \"Generating new build\" && git push heroku master"
   },
   "private": true,
   "dependencies": {
