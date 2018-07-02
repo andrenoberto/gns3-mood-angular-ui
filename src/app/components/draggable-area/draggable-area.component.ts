@@ -46,7 +46,7 @@ export class DraggableAreaComponent implements AfterViewInit {
     });
   }
 
-  private getNodes() {
+  public getNodes() {
     if (this.projectId) {
       this.renderer.addClass(this.el.nativeElement, 'is-loading');
       this.gns3ServerService.getNodes(this.projectId).subscribe(nodes => {
