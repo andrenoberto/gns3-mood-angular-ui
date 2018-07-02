@@ -18,7 +18,7 @@
         <app-node-type name="nodeType" [(ngModel)]="type" [required]="true" ngDefaultControl></app-node-type>
       </section>
       <footer class="modal-card-foot">
-        <button type="submit" class="button is-success" [disabled]="!editForm.form.valid">Create new node</button>
+        <button type="submit" class="button is-success" [disabled]="!editForm.form.valid || !projectId">Create new node</button>
         <button class="button" (click)="onCloseCancel()">Cancel</button>
       </footer>
     </form>
