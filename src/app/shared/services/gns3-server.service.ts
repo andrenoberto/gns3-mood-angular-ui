@@ -57,4 +57,40 @@ export class Gns3ServerService {
       })
     );
   }
+
+  reloadNode(nodeId, projectId) {
+    return this.http.post(`${environment.apiRootUrl}/projects/${projectId}/nodes/${nodeId}/reload`, {}, this.httpOptions);
+  }
+
+  startNode(nodeId, projectId) {
+    return this.http.post(`${environment.apiRootUrl}/projects/${projectId}/nodes/${nodeId}/start`, {}, this.httpOptions);
+  }
+
+  stopNode(nodeId, projectId) {
+    return this.http.post(`${environment.apiRootUrl}/projects/${projectId}/nodes/${nodeId}/stop`, {}, this.httpOptions);
+  }
+
+  suspendNode(nodeId, projectId) {
+    return this.http.post(`${environment.apiRootUrl}/projects/${projectId}/nodes/${nodeId}/suspend`, {}, this.httpOptions);
+  }
+
+  linkNode(primaryNodeId, secondaryNodeId, projectId) {
+    const body = {
+      nodes: [{
+        adapter_number: 0,
+        node_id: primaryNodeId,
+        port_number: 0
+      },
+        {
+          adapter_number: 0,
+          node_id: secondaryNodeId,
+          port_number: 0
+        }]
+    };
+    return this.http.post(`${environment.apiRootUrl}/projects/${projectId}/links`, body, this.httpOptions);
+  }
+
+  deleteNode(nodeId, projectId) {
+    return this.http.delete(`${environment.apiRootUrl}/projects/${projectId}/nodes/${nodeId}`, this.httpOptions);
+  }
 }
