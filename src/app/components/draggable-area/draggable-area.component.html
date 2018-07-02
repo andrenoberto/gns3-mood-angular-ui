@@ -1,9 +1,90 @@
+<section class="update-button">
+  <div class="container">
+    <div class="align-icon">
+      <a #nodeRefresh id="node-refresh" class="button" (click)="getNodes()">
+        <span class="icon">
+          <i class="fas fa-sync"></i>
+        </span>
+        <span>Update</span>
+      </a>
+    </div>
+  </div>
+</section>
 <section class="section">
   <div class="container">
     <div class="columns is-variable is-1 is-multiline is-mobile" id="gridLayout">
-      <div class="column is-3" *ngFor="let node of nodes">
+      <div class="column is-3" [id]="node.node_id" *ngFor="let node of nodes" [shAttachMenu]="menu" [shMenuData]="node">
         <div class="notification is-primary has-text-centered">{{node.label.text}}</div>
       </div>
     </div>
   </div>
 </section>
+
+<sh-context-menu #menu>
+  <ng-template *ngIf="!linkWith" shContextMenuItem let-data (click)="setPrimaryNodeToLink($event)">
+    <div class="align-icon" *ngIf="data.node_id != primaryNodeToLink">
+      <span class="icon">
+        <i class="fas fa-link"></i>
+      </span>
+      <span>Link</span>
+    </div>
+  </ng-template>
+  <ng-template *ngIf="linkWith" shContextMenuItem let-data (click)="linkNode($event)">
+    <div class="align-icon" *ngIf="data.node_id != primaryNodeToLink; else cancelLink">
+      <span class="icon">
+        <i class="fas fa-link"></i>
+      </span>
+      <span>Link With</span>
+    </div>
+  </ng-template>
+  <ng-template shContextMenuItem let-data (click)="startNode($event)">
+    <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-play"></i>
+      </span>
+      <span>Start</span>
+    </div>
+  </ng-template>
+  <ng-template shContextMenuItem let-data (click)="stopNode($event)">
+    <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-stop"></i>
+      </span>
+      <span>Stop</span>
+    </div>
+  </ng-template>
+  <ng-template shContextMenuItem let-data (click)="suspendNode($event)">
+    <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-pause"></i>
+      </span>
+      <span>Suspend</span>
+    </div>
+  </ng-template>
+  <ng-template shContextMenuItem let-data (click)="reloadNode($event)">
+    <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-sync"></i>
+      </span>
+      <span>Reload</span>
+    </div>
+  </ng-template>
+  <div shContextMenuItem [divider]="true"></div>
+  <ng-template shContextMenuItem let-data (click)="deleteNode($event)">
+    <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-trash"></i>
+      </span>
+      <span>Delete</span>
+    </div>
+  </ng-template>
+</sh-context-menu>
+
+<ng-template #cancelLink>
+  <div class="align-icon">
+      <span class="icon">
+        <i class="fas fa-times"></i>
+      </span>
+    <span>Cancel Link</span>
+  </div>
+</ng-template>
