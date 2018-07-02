@@ -11,8 +11,10 @@ export class ListProjectsComponent implements OnInit {
   public selected: string;
   public event: string;
   public projects: Array<any>;
+  public disableButton: boolean;
 
   @ViewChild('projectList') el: ElementRef;
+  @ViewChild('closeButton') elButton: ElementRef;
 
   constructor(private gns3ServerService: Gns3ServerService,
               private renderer: Renderer2) {
@@ -27,28 +29,39 @@ export class ListProjectsComponent implements OnInit {
   private getProjectList() {
     this.gns3ServerService.getProjectList().subscribe(data => {
       this.projects = data;
+      this.renderer.removeClass(this.elButton.nativeElement, 'is-loading');
+      this.disableButton = false;
     }, error => {
       console.log(error);
     });
   }
 
   onOpen() {
-    this.getProjectList();
+    this.disableButton = true;
+    this.renderer.addClass(this.elButton.nativeElement, 'is-loading');
     this.renderer.addClass(this.el.nativeElement, 'is-active');
+    this.getProjectList();
   }
 
   onClose() {
-    this.renderer.removeClass(this.el.nativeElement, 'is-active');
+    this.renderer.addClass(this.elButton.nativeElement, 'is-loading');
     if (this.selected !== this.opened) {
-      this.gns3ServerService.openProject(this.selected).subscribe(() => {
-        if (this.opened) {
-          this.gns3ServerService.closeProject(this.opened).subscribe(() => this.updateOpened());
-        } else {
-          this.updateOpened();
-        }
-      }, error => {
-        console.log(error);
-      });
+      this.gns3ServerService.openProject(this.selected)
+        .subscribe(() => {
+          if (this.opened) {
+            this.gns3ServerService.closeProject(this.opened).subscribe(() => this.updateOpened());
+          } else {
+            this.updateOpened();
+          }
+        }, error => {
+          console.log(error);
+        }, () => {
+          this.renderer.removeClass(this.elButton.nativeElement, 'is-loading');
+          this.renderer.removeClass(this.el.nativeElement, 'is-active');
+        });
+    } else {
+      this.renderer.removeClass(this.elButton.nativeElement, 'is-loading');
+      this.renderer.removeClass(this.el.nativeElement, 'is-active');
     }
   }
 

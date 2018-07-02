@@ -17,7 +17,7 @@
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button" (click)="onClose()">Close</button>
+      <button #closeButton class="button" (click)="onClose()" [disabled]="disableButton">Close</button>
     </footer>
   </div>
 </div>
